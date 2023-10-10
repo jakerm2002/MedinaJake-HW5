@@ -132,24 +132,24 @@ class PizzaCreationViewController: UIViewController {
     
     @IBAction func doneButtonPressed(_ sender: Any) {
         // check for missing ingredients
-        if (crustType.isEmpty || cheeseType.isEmpty || meatType.isEmpty || veggiesType.isEmpty) {
-            var missing:[String] = [] // array for printing missing ingredients
-            if crustType.isEmpty {
-                missing.append("crust")
-            }
-            if cheeseType.isEmpty {
-                missing.append("cheese")
-            }
-            if meatType.isEmpty {
-                missing.append("meat")
-            }
-            if veggiesType.isEmpty {
-                missing.append("veggies")
-            }
+        var missing:[String] = [] // array for printing missing ingredients
+        if crustType.isEmpty {
+            missing.append("crust")
+        }
+        if cheeseType.isEmpty {
+            missing.append("cheese")
+        }
+        if meatType.isEmpty {
+            missing.append("meat")
+        }
+        if veggiesType.isEmpty {
+            missing.append("veggies")
+        }
+            
+        if !missing.isEmpty {
             let alert = UIAlertController(title: "Missing ingredient(s)", message: "Please select a \(missing.joined(separator: " & ")) type.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default))
             present(alert, animated: true)
-            
         } else {
             let newPizza = Pizza(pSize: size, crust: crustType, cheese: cheeseType, meat: meatType, veggies: veggiesType)
             // format and display the confirmation label
