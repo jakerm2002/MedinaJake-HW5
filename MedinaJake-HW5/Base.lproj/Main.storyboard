@@ -140,6 +140,12 @@
                                     <action selector="doneButtonPressed:" destination="TGe-H1-C6m" eventType="touchUpInside" id="MUN-hc-QoP"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirmation Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9JI-uK-Tvs">
+                                <rect key="frame" x="16" y="536" width="361" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bfU-Nd-het"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -148,15 +154,18 @@
                             <constraint firstItem="gAo-t1-stx" firstAttribute="centerX" secondItem="mss-45-u50" secondAttribute="centerX" id="7Ri-1Y-xRd"/>
                             <constraint firstItem="VZd-cb-Gtp" firstAttribute="top" secondItem="ipp-MO-zuz" secondAttribute="bottom" constant="15" id="ApT-8o-gpR"/>
                             <constraint firstItem="bfU-Nd-het" firstAttribute="trailing" secondItem="4cr-6y-3ew" secondAttribute="trailing" constant="16" id="AuG-u5-8mj"/>
+                            <constraint firstItem="9JI-uK-Tvs" firstAttribute="top" secondItem="gAo-t1-stx" secondAttribute="bottom" constant="20" id="DBV-ZK-mNu"/>
                             <constraint firstItem="cIH-N5-b3z" firstAttribute="top" secondItem="bfU-Nd-het" secondAttribute="top" constant="13" id="EjK-WL-OeX"/>
                             <constraint firstItem="66T-7Q-iPO" firstAttribute="top" secondItem="4cr-6y-3ew" secondAttribute="bottom" constant="28" id="Fwk-p0-aDV"/>
                             <constraint firstItem="iXL-Wy-9Ip" firstAttribute="leading" secondItem="bfU-Nd-het" secondAttribute="leading" constant="16" id="GXU-u9-MTx"/>
+                            <constraint firstItem="9JI-uK-Tvs" firstAttribute="leading" secondItem="bfU-Nd-het" secondAttribute="leading" constant="16" id="LFG-cb-CVd"/>
                             <constraint firstItem="4cr-6y-3ew" firstAttribute="leading" secondItem="bfU-Nd-het" secondAttribute="leading" constant="16" id="LZp-tV-I6X"/>
                             <constraint firstItem="4cr-6y-3ew" firstAttribute="top" secondItem="iXL-Wy-9Ip" secondAttribute="bottom" constant="8" symbolic="YES" id="Qlv-zz-nKN"/>
                             <constraint firstItem="Fgv-dc-NNT" firstAttribute="leading" secondItem="bfU-Nd-het" secondAttribute="leading" constant="16" id="bVH-QX-8hx"/>
                             <constraint firstItem="cIH-N5-b3z" firstAttribute="centerX" secondItem="mss-45-u50" secondAttribute="centerX" id="h8m-Ln-qNE"/>
                             <constraint firstItem="ipp-MO-zuz" firstAttribute="top" secondItem="Fgv-dc-NNT" secondAttribute="bottom" constant="15" id="iuK-e5-LKT"/>
                             <constraint firstItem="ipp-MO-zuz" firstAttribute="leading" secondItem="bfU-Nd-het" secondAttribute="leading" constant="16" id="jVp-3o-GAt"/>
+                            <constraint firstItem="bfU-Nd-het" firstAttribute="trailing" secondItem="9JI-uK-Tvs" secondAttribute="trailing" constant="16" id="kQo-C1-scN"/>
                             <constraint firstItem="Fgv-dc-NNT" firstAttribute="top" secondItem="66T-7Q-iPO" secondAttribute="bottom" constant="15" id="nd8-5P-tur"/>
                             <constraint firstItem="gAo-t1-stx" firstAttribute="top" secondItem="VZd-cb-Gtp" secondAttribute="bottom" constant="30" id="t4f-Hf-JQC"/>
                             <constraint firstItem="iXL-Wy-9Ip" firstAttribute="top" secondItem="cIH-N5-b3z" secondAttribute="bottom" constant="41" id="vbg-la-2nM"/>
@@ -165,6 +174,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="prH-qa-PE8"/>
                     <connections>
+                        <outlet property="confirmationLabel" destination="9JI-uK-Tvs" id="hSt-sg-hYU"/>
                         <outlet property="sizeSegmentedControl" destination="4cr-6y-3ew" id="Plz-2h-WUR"/>
                     </connections>
                 </viewController>

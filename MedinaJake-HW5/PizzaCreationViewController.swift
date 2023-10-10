@@ -19,22 +19,13 @@ class PizzaCreationViewController: UIViewController {
     var veggiesType = ""
 
     @IBOutlet weak var sizeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var confirmationLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        confirmationLabel.numberOfLines = 0 // allow for newline chars in text
+        confirmationLabel.text = ""
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     @IBAction func onSegmentChanged(_ sender: Any) {
         switch sizeSegmentedControl.selectedSegmentIndex {
@@ -49,8 +40,8 @@ class PizzaCreationViewController: UIViewController {
         }
     }
     
-    
     @IBAction func crustButtonPressed(_ sender: Any) {
+        // set our string variables using the selected option
         func setCrustType(_ type: String) {
             self.crustType = type.lowercased()
         }
@@ -139,8 +130,9 @@ class PizzaCreationViewController: UIViewController {
     }
     
     @IBAction func doneButtonPressed(_ sender: Any) {
+        // check for missing ingredients
         if (crustType.isEmpty || cheeseType.isEmpty || meatType.isEmpty || veggiesType.isEmpty) {
-            var missing:[String] = []
+            var missing:[String] = [] // array for printing missing ingredients
             if crustType.isEmpty {
                 missing.append("crust")
             }
@@ -159,8 +151,15 @@ class PizzaCreationViewController: UIViewController {
             
         } else {
             let newPizza = Pizza(pSize: size, crust: crustType, cheese: cheeseType, meat: meatType, veggies: veggiesType)
-            
+            // format and display the confirmation label
+            confirmationLabel.text = "One \(size) pizza with:\n\t\(crustType)\n\t\(cheeseType)\n\t\(meatType)\n\t\(veggiesType)"
+            print(size)
+            print(crustType)
+            print(cheeseType)
+            print(meatType)
+            print(veggiesType)
         }
+
     }
     
 }
