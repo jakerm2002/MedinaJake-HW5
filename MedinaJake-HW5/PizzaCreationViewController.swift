@@ -16,7 +16,7 @@ class PizzaCreationViewController: UIViewController {
     @IBOutlet weak var confirmationLabel: UILabel!
     
     var delegate: UIViewController?
-    var size = "small"
+    var size = "small" // ensure default pizza size
     var crustType = ""
     var cheeseType = ""
     var meatType = ""
@@ -154,11 +154,7 @@ class PizzaCreationViewController: UIViewController {
             let newPizza = Pizza(pSize: size, crust: crustType, cheese: cheeseType, meat: meatType, veggies: veggiesType)
             // format and display the confirmation label
             confirmationLabel.text = "One \(size) pizza with:\n\t\(crustType)\n\t\(cheeseType)\n\t\(meatType)\n\t\(veggiesType)"
-            print(size)
-            print(crustType)
-            print(cheeseType)
-            print(meatType)
-            print(veggiesType)
+            // utilize mainVC PizzaAdder protocol to add to the pizzaList array
             let mainVC = delegate as! PizzaAdder
             mainVC.addPizza(newPizza: newPizza)
         }
