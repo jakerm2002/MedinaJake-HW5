@@ -11,15 +11,16 @@
 import UIKit
 
 class PizzaCreationViewController: UIViewController {
+
+    @IBOutlet weak var sizeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var confirmationLabel: UILabel!
     
+    var delegate: UIViewController?
     var size = "small"
     var crustType = ""
     var cheeseType = ""
     var meatType = ""
     var veggiesType = ""
-
-    @IBOutlet weak var sizeSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var confirmationLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -158,6 +159,8 @@ class PizzaCreationViewController: UIViewController {
             print(cheeseType)
             print(meatType)
             print(veggiesType)
+            let mainVC = delegate as! PizzaAdder
+            mainVC.addPizza(newPizza: newPizza)
         }
 
     }

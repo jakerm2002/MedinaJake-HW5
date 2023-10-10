@@ -14,6 +14,7 @@ class Pizza {
     var cheese: String
     var meat: String
     var veggies: String
+    var output: String
     
     init(pSize: String, crust: String, cheese: String, meat: String, veggies: String) {
         self.pSize = pSize
@@ -21,5 +22,6 @@ class Pizza {
         self.cheese = cheese
         self.meat = meat
         self.veggies = veggies
+        output = "\(pSize)\n\t\(crust)\n\t\(cheese)\n\t\(meat)\n\t\(veggies)"
     }
 }
