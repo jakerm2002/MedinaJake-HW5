@@ -90,6 +90,9 @@
                                     <segment title="Medium"/>
                                     <segment title="Large"/>
                                 </segments>
+                                <connections>
+                                    <action selector="onSegmentChanged:" destination="TGe-H1-C6m" eventType="valueChanged" id="2su-ns-JPG"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iXL-Wy-9Ip">
                                 <rect key="frame" x="16" y="178" width="83" height="21"/>
@@ -161,6 +164,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="prH-qa-PE8"/>
+                    <connections>
+                        <outlet property="sizeSegmentedControl" destination="4cr-6y-3ew" id="Plz-2h-WUR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UPx-tQ-Pi9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

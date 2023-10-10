@@ -12,16 +12,16 @@ import UIKit
 
 class PizzaCreationViewController: UIViewController {
     
-    var size = ""
+    var size = "small"
     var crustType = ""
     var cheeseType = ""
     var meatType = ""
     var veggiesType = ""
 
+    @IBOutlet weak var sizeSegmentedControl: UISegmentedControl!
+    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
     
@@ -36,7 +36,19 @@ class PizzaCreationViewController: UIViewController {
     }
     */
     
-
+    @IBAction func onSegmentChanged(_ sender: Any) {
+        switch sizeSegmentedControl.selectedSegmentIndex {
+        case 0:
+            size = "small"
+        case 1:
+            size = "medium"
+        case 2:
+            size = "large"
+        default:
+            break
+        }
+    }
+    
     
     @IBAction func crustButtonPressed(_ sender: Any) {
         func setCrustType(_ type: String) {
@@ -127,13 +139,28 @@ class PizzaCreationViewController: UIViewController {
     }
     
     @IBAction func doneButtonPressed(_ sender: Any) {
-        
-//        let newPizza = Pizza(pSize: <#T##String#>, crust: <#T##String#>, cheese: <#T##String#>, meat: <#T##String#>, veggies: <#T##String#>)
-        print("One \(size) pizza with:")
-        print(crustType)
-        print(cheeseType)
-        print(meatType)
-        print(veggiesType)
+        if (crustType.isEmpty || cheeseType.isEmpty || meatType.isEmpty || veggiesType.isEmpty) {
+            var missing:[String] = []
+            if crustType.isEmpty {
+                missing.append("crust")
+            }
+            if cheeseType.isEmpty {
+                missing.append("cheese")
+            }
+            if meatType.isEmpty {
+                missing.append("meat")
+            }
+            if veggiesType.isEmpty {
+                missing.append("veggies")
+            }
+            let alert = UIAlertController(title: "Missing ingredient(s)", message: "Please select a \(missing.joined(separator: " & ")) type.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
+            
+        } else {
+            let newPizza = Pizza(pSize: size, crust: crustType, cheese: cheeseType, meat: meatType, veggies: veggiesType)
+            
+        }
     }
     
 }
