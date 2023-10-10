@@ -14,6 +14,8 @@
 		66AC98B72AD3961F00C63A64 /* MedinaJake_HW5.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 66AC98B52AD3961F00C63A64 /* MedinaJake_HW5.xcdatamodeld */; };
 		66AC98B92AD3962000C63A64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66AC98B82AD3962000C63A64 /* Assets.xcassets */; };
 		66AC98BC2AD3962000C63A64 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66AC98BA2AD3962000C63A64 /* LaunchScreen.storyboard */; };
+		66AC98C42AD3988D00C63A64 /* PizzaCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AC98C32AD3988D00C63A64 /* PizzaCreationViewController.swift */; };
+		66F686D82AD4F42800FB7E12 /* Pizza.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F686D72AD4F42800FB7E12 /* Pizza.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		66AC98B82AD3962000C63A64 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		66AC98BB2AD3962000C63A64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		66AC98BD2AD3962000C63A64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		66AC98C32AD3988D00C63A64 /* PizzaCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PizzaCreationViewController.swift; sourceTree = "<group>"; };
+		66F686D72AD4F42800FB7E12 /* Pizza.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pizza.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +65,9 @@
 				66AC98AC2AD3961F00C63A64 /* AppDelegate.swift */,
 				66AC98AE2AD3961F00C63A64 /* SceneDelegate.swift */,
 				66AC98B02AD3961F00C63A64 /* ViewController.swift */,
+				66F686D72AD4F42800FB7E12 /* Pizza.swift */,
 				66AC98B22AD3961F00C63A64 /* Main.storyboard */,
+				66AC98C32AD3988D00C63A64 /* PizzaCreationViewController.swift */,
 				66AC98B82AD3962000C63A64 /* Assets.xcassets */,
 				66AC98BA2AD3962000C63A64 /* LaunchScreen.storyboard */,
 				66AC98BD2AD3962000C63A64 /* Info.plist */,
@@ -143,8 +149,10 @@
 			files = (
 				66AC98B12AD3961F00C63A64 /* ViewController.swift in Sources */,
 				66AC98AD2AD3961F00C63A64 /* AppDelegate.swift in Sources */,
+				66F686D82AD4F42800FB7E12 /* Pizza.swift in Sources */,
 				66AC98AF2AD3961F00C63A64 /* SceneDelegate.swift in Sources */,
 				66AC98B72AD3961F00C63A64 /* MedinaJake_HW5.xcdatamodeld in Sources */,
+				66AC98C42AD3988D00C63A64 /* PizzaCreationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
