@@ -10,6 +10,7 @@
 
 import UIKit
 
+// implemented by this, used by PizzaCreationVC
 protocol PizzaAdder {
     func addPizza(newPizza: Pizza)
 }
@@ -25,11 +26,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
     }
     
+    // when the user clicks the back "Pizza Order" button
+    // make sure we get the new data
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
     }
@@ -38,6 +40,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return pizzaList.count
     }
     
+    // generate cells for TableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: textCellIdentifier, for: indexPath)
         
@@ -47,6 +50,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
+    // deselect row once tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -55,21 +59,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if segue.identifier == pizzaCreationSegueIdentifier,
            let destination = segue.destination as? PizzaCreationViewController
         {
-            print("YES")
             // allow PizzaCreationViewController to change the pizzaList using us
             destination.delegate = self
         }
     }
     
     func addPizza(newPizza: Pizza) {
-        print("adding pizaa")
-        print("-----------")
-        print(newPizza.output)
-        print("-----------")
         pizzaList.append(newPizza)
-        print(pizzaList)
     }
-    
 
 }
 
