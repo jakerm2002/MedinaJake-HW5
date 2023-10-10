@@ -22,6 +22,7 @@ class Pizza {
         self.cheese = cheese
         self.meat = meat
         self.veggies = veggies
+        // output will be displayed in table view cell
         output = "\(pSize)\n\t\(crust)\n\t\(cheese)\n\t\(meat)\n\t\(veggies)"
     }
 }
