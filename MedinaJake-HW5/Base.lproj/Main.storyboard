@@ -133,6 +133,9 @@
                                 <rect key="frame" x="164" y="481" width="65" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Done"/>
+                                <connections>
+                                    <action selector="doneButtonPressed:" destination="TGe-H1-C6m" eventType="touchUpInside" id="MUN-hc-QoP"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bfU-Nd-het"/>
