@@ -46,6 +46,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // if a user clicks Sign Out in the main VC, then
+    // we show the Sign In page
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        segmentedControl.selectedSegmentIndex = 0
+        buttonLabel.setTitle("Sign In", for: .normal)
+        confirmPasswordLabel.isHidden = true
+        confirmPasswordTextField.isHidden = true
+    }
+    
     func clearFields() {
         userIDTextField.text = ""
         passwordTextField.text = ""
@@ -118,15 +128,5 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
