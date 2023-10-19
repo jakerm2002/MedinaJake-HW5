@@ -16,6 +16,9 @@
 		66AC98BC2AD3962000C63A64 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66AC98BA2AD3962000C63A64 /* LaunchScreen.storyboard */; };
 		66AC98C42AD3988D00C63A64 /* PizzaCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AC98C32AD3988D00C63A64 /* PizzaCreationViewController.swift */; };
 		66F686D82AD4F42800FB7E12 /* Pizza.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F686D72AD4F42800FB7E12 /* Pizza.swift */; };
+		69D4E9FB2AE18B870098E33D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D4E9FA2AE18B870098E33D /* LoginViewController.swift */; };
+		69D4E9FD2AE18BB90098E33D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69D4E9FC2AE18BB90098E33D /* GoogleService-Info.plist */; };
+		69D4EA0C2AE18C280098E33D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 69D4EA0B2AE18C280098E33D /* FirebaseAuth */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,8 @@
 		66AC98BD2AD3962000C63A64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66AC98C32AD3988D00C63A64 /* PizzaCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PizzaCreationViewController.swift; sourceTree = "<group>"; };
 		66F686D72AD4F42800FB7E12 /* Pizza.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pizza.swift; sourceTree = "<group>"; };
+		69D4E9FA2AE18B870098E33D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		69D4E9FC2AE18BB90098E33D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69D4EA0C2AE18C280098E33D /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,11 +73,13 @@
 				66AC98B02AD3961F00C63A64 /* ViewController.swift */,
 				66F686D72AD4F42800FB7E12 /* Pizza.swift */,
 				66AC98B22AD3961F00C63A64 /* Main.storyboard */,
+				69D4E9FA2AE18B870098E33D /* LoginViewController.swift */,
 				66AC98C32AD3988D00C63A64 /* PizzaCreationViewController.swift */,
 				66AC98B82AD3962000C63A64 /* Assets.xcassets */,
 				66AC98BA2AD3962000C63A64 /* LaunchScreen.storyboard */,
 				66AC98BD2AD3962000C63A64 /* Info.plist */,
 				66AC98B52AD3961F00C63A64 /* MedinaJake_HW5.xcdatamodeld */,
+				69D4E9FC2AE18BB90098E33D /* GoogleService-Info.plist */,
 			);
 			path = "MedinaJake-HW5";
 			sourceTree = "<group>";
@@ -92,6 +100,9 @@
 			dependencies = (
 			);
 			name = "MedinaJake-HW5";
+			packageProductDependencies = (
+				69D4EA0B2AE18C280098E33D /* FirebaseAuth */,
+			);
 			productName = "MedinaJake-HW5";
 			productReference = 66AC98A92AD3961F00C63A64 /* MedinaJake-HW5.app */;
 			productType = "com.apple.product-type.application";
@@ -120,6 +131,9 @@
 				Base,
 			);
 			mainGroup = 66AC98A02AD3961E00C63A64;
+			packageReferences = (
+				69D4E9FE2AE18C280098E33D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 66AC98AA2AD3961F00C63A64 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -135,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66AC98BC2AD3962000C63A64 /* LaunchScreen.storyboard in Resources */,
+				69D4E9FD2AE18BB90098E33D /* GoogleService-Info.plist in Resources */,
 				66AC98B92AD3962000C63A64 /* Assets.xcassets in Resources */,
 				66AC98B42AD3961F00C63A64 /* Main.storyboard in Resources */,
 			);
@@ -147,6 +162,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69D4E9FB2AE18B870098E33D /* LoginViewController.swift in Sources */,
 				66AC98B12AD3961F00C63A64 /* ViewController.swift in Sources */,
 				66AC98AD2AD3961F00C63A64 /* AppDelegate.swift in Sources */,
 				66F686D82AD4F42800FB7E12 /* Pizza.swift in Sources */,
@@ -375,6 +391,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		69D4E9FE2AE18C280098E33D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.16.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		69D4EA0B2AE18C280098E33D /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 69D4E9FE2AE18C280098E33D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		66AC98B52AD3961F00C63A64 /* MedinaJake_HW5.xcdatamodeld */ = {

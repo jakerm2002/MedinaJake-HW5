@@ -9,6 +9,7 @@
 // Course: CS371L
 
 import UIKit
+import FirebaseAuth
 
 // implemented by this, used by PizzaCreationVC
 protocol PizzaAdder {
@@ -67,6 +68,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func addPizza(newPizza: Pizza) {
         pizzaList.append(newPizza)
     }
+    
+    @IBAction func signoutButtonPressed(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            self.dismiss(animated: true)
+        } catch {
+            print("Sign out error")
+        }
+    }
+    
 
 }
 
