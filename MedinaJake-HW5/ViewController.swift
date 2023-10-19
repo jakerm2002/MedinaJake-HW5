@@ -28,7 +28,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let pizzaCreationSegueIdentifier = "PizzaCreationSegueIdentifier"
     
     // serves as our internal data structure for table view
-    var CDPizzaList:[NSManagedObject] = []
+    var pizzaListCD:[NSManagedObject] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +44,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return CDPizzaList.count
+        return pizzaListCD.count
     }
     
     // generate cells for TableView
@@ -52,7 +52,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: textCellIdentifier, for: indexPath)
         
         let row = indexPath.row
-        if let output = CDPizzaList[row].value(forKey: "output") {
+        if let output = pizzaListCD[row].value(forKey: "output") {
              cell.textLabel?.text = output as? String
          }
         
@@ -67,12 +67,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // swipe to delete rows from table view
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let pizzaToDelete = CDPizzaList[indexPath.row]
+            let pizzaToDelete = pizzaListCD[indexPath.row]
             // uses the Pizza NSManagedObject to delete that Pizza from Core Data
             context.delete(pizzaToDelete)
             // now that the pizza isn't in Core Data, we also need
             // to remove it from our internal mirror data structure
-            CDPizzaList.remove(at: indexPath.row)
+            pizzaListCD.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             saveContext()
         }
@@ -99,7 +99,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func populateTempPizzaList() {
-        CDPizzaList = retrievePizzas()
+        pizzaListCD = retrievePizzas()
         tableView.reloadData()
     }
     
@@ -138,7 +138,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func addPizza(newPizza: Pizza) {
         let storedPizza = storePizza(pizzaObj: newPizza)
-        CDPizzaList.append(storedPizza)
+        pizzaListCD.append(storedPizza)
         
     }
     
