@@ -27,11 +27,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let textCellIdentifier = "TextCell"
     let pizzaCreationSegueIdentifier = "PizzaCreationSegueIdentifier"
     
-//    var pizzaList:[Pizza] = []
+    var pizzaList:[Pizza] = []
     var CDPizzaList:[NSManagedObject] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        populateTempPizzaList()
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -43,8 +44,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return pizzaList.count
-        return CDPizzaList.count
+        return pizzaList.count
     }
     
     // generate cells for TableView
@@ -52,10 +52,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: textCellIdentifier, for: indexPath)
         
         let row = indexPath.row
-//        cell.textLabel?.text = pizzaList[row].output
-        if let output = CDPizzaList[row].value(forKey: "output") {
-            cell.textLabel?.text = output as? String
-        }
+        cell.textLabel?.text = pizzaList[row].output
         
         return cell
     }
@@ -67,11 +64,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // swipe to delete rows from table view
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            pizzaList.remove(at: indexPath.row) // remove from temp data structure
+//            // TODO: remove from core data here!
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//        }
+        
+        // try this
         if editingStyle == .delete {
-            CDPizzaList.remove(at: indexPath.row)
+            let pizzaToDelete = CDPizzaList[indexPath.row]
+            context.delete(pizzaToDelete)
+            pizzaList.remove(at: indexPath.row) // remove from temp data structure
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
 
@@ -95,6 +99,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    func populateTempPizzaList() {
+        CDPizzaList = retrievePizzas()
+        pizzaList.removeAll() // should already be empty, but just in case
+        for pizza in CDPizzaList {
+            pizzaList.append(Pizza(
+                pSize: pizza.value(forKey: "pSize") as! String,
+                crust: pizza.value(forKey: "crust") as! String,
+                cheese: pizza.value(forKey: "cheese") as! String,
+                meat: pizza.value(forKey: "meat") as! String,
+                veggies: pizza.value(forKey: "veggies") as! String)
+            )
+        }
+        tableView.reloadData()
+    }
+    
     // get me an array of pizzas
     func retrievePizzas() -> [NSManagedObject] {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CDPizza")
@@ -111,7 +130,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     // store into core data
-    func storePizza(pizzaObj:Pizza) {
+    func storePizza(pizzaObj:Pizza) -> NSManagedObject {
         let pizza = NSEntityDescription.insertNewObject(
             forEntityName: "CDPizza",
             into: context)
@@ -125,13 +144,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // commit the changes
         saveContext()
+        
+        return pizza
     }
     
     func addPizza(newPizza: Pizza) {
-//        pizzaList.append(newPizza) // old non-CD
+        pizzaList.append(newPizza)
+        let storedPizza = storePizza(pizzaObj: newPizza)
+        CDPizzaList.append(storedPizza)
         
-        storePizza(pizzaObj: newPizza)
-        CDPizzaList = retrievePizzas()
     }
     
     @IBAction func signoutButtonPressed(_ sender: Any) {
