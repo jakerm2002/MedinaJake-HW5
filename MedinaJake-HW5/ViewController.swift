@@ -9,12 +9,16 @@
 // Course: CS371L
 
 import UIKit
+import CoreData
 import FirebaseAuth
 
 // implemented by this, used by PizzaCreationVC
 protocol PizzaAdder {
     func addPizza(newPizza: Pizza)
 }
+
+let appDelegate = UIApplication.shared.delegate as! AppDelegate
+let context = appDelegate.persistentContainer.viewContext
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PizzaAdder {
     
@@ -23,7 +27,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let textCellIdentifier = "TextCell"
     let pizzaCreationSegueIdentifier = "PizzaCreationSegueIdentifier"
     
-    var pizzaList:[Pizza] = []
+//    var pizzaList:[Pizza] = []
+    var CDPizzaList:[NSManagedObject] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +43,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pizzaList.count
+//        return pizzaList.count
+        return CDPizzaList.count
     }
     
     // generate cells for TableView
@@ -46,7 +52,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: textCellIdentifier, for: indexPath)
         
         let row = indexPath.row
-        cell.textLabel?.text = pizzaList[row].output
+//        cell.textLabel?.text = pizzaList[row].output
+        if let output = CDPizzaList[row].value(forKey: "output") {
+            cell.textLabel?.text = output as? String
+        }
         
         return cell
     }
@@ -65,8 +74,54 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    func saveContext () {
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
+    
+    // get me an array of pizzas
+    func retrievePizzas() -> [NSManagedObject] {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CDPizza")
+        var fetchedResults:[NSManagedObject]? = nil
+        
+        do {
+            try fetchedResults = context.fetch(request) as? [NSManagedObject]
+        } catch {
+            print("Error occurred while retrieving data")
+            abort()
+        }
+        
+        return(fetchedResults)!
+    }
+    
+    // store into core data
+    func storePizza(pizzaObj:Pizza) {
+        let pizza = NSEntityDescription.insertNewObject(
+            forEntityName: "CDPizza",
+            into: context)
+
+        pizza.setValue(pizzaObj.pSize, forKey: "pSize")
+        pizza.setValue(pizzaObj.crust, forKey: "crust")
+        pizza.setValue(pizzaObj.cheese, forKey: "cheese")
+        pizza.setValue(pizzaObj.meat, forKey: "meat")
+        pizza.setValue(pizzaObj.veggies, forKey: "veggies")
+        pizza.setValue(pizzaObj.output, forKey: "output")
+        
+        // commit the changes
+        saveContext()
+    }
+    
     func addPizza(newPizza: Pizza) {
-        pizzaList.append(newPizza)
+//        pizzaList.append(newPizza) // old non-CD
+        
+        storePizza(pizzaObj: newPizza)
+        CDPizzaList = retrievePizzas()
     }
     
     @IBAction func signoutButtonPressed(_ sender: Any) {
